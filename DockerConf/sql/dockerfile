@@ -1,0 +1,5 @@
+FROM postgres:9.6
+
+MAINTAINER wimness@163.com
+
+RUN apt-get update

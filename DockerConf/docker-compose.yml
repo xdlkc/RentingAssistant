@@ -1,0 +1,20 @@
+version: '2'
+services:
+ spider:
+  image: xdlkc/spider
+    
+ db:
+  image: xdlkc/sql
+  # volumes:
+  #  - /home/lkc/Engineer/DockerEnv/pgd:/var/lib/postgresql/data/pgdata
+  ports:
+   - 54322:5432
+  environment:
+   POSTGRES_PASSWORD: wimness
+   
+ web:
+  image: xdlkc/web
+  ports:
+   - 8088:8080
+
+   

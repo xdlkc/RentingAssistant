@@ -1,0 +1,13 @@
+.idea/
+SpiderProject/.idea/
+.vscode/
+SpiderProject/Spiders/logs/debugs/*
+SpiderProject/Spiders/logs/errors/*
+SpiderProject/Spiders/logs/infos/*
+SpiderProject/Spiders/logs/warnings/*
+
+*.pyc
+WebServer/.mvn
+DockerConf/.vscode
+
+!SpiderProject/Spiders/logs/debugs

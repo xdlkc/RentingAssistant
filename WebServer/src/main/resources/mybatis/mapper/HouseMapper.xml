@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.rta.web.dom.House">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="money" jdbcType="DECIMAL" property="money" />
+        <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+        <result column="modify_date" jdbcType="TIMESTAMP" property="modifyDate" />
+        <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    </resultMap>
+    <select id="selectHouseById" resultMap="com.rta.web.dom.House">
+        select * from postgres.public.house where id = #{id};
+    </select>
+
+    <select id="selectHouseBySubway" resultMap="com.rta.web.dom.House">
+        select *
+        from house
+        WHERE subway = #{subway};
+    </select>
+</mapper>
