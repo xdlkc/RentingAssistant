@@ -6,9 +6,6 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 from Spiders.sql.init_sql import *
 from sql.sql_config import *
-import psycopg2
-import sys
-import codecs
 
 
 class SpidersPipeline(object):
@@ -89,6 +86,8 @@ class CityDataPipeline(object):
     """
 
     def open_spider(self, spider):
+        if spider.name != 'city':
+            return
         judge_table_sql = '''SELECT tablename FROM pg_tables WHERE tablename='city';'''
         create_table_sql = '''CREATE TABLE city(
           id SERIAL PRIMARY KEY ,

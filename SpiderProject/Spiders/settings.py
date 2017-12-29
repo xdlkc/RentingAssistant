@@ -23,7 +23,7 @@ NEWSPIDER_MODULE = 'Spiders.spiders'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 32
+# CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
@@ -71,7 +71,7 @@ DOWNLOADER_MIDDLEWARES = {
 ITEM_PIPELINES = {
     # 'Spiders.pipelines.SpidersPipeline': 100,
     # 'Spiders.pipelines.HouseDataPipeline': 110,
-    'Spiders.pipelines.CityDataPipeline': 120,
+    # 'Spiders.pipelines.CityDataPipeline': 120,
     # 'Spiders.pipelines.JsonPipeline': 130,
     # 'Spiders.pipelines.ProxyPipeline': 140,
 }

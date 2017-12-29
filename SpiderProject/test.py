@@ -9,3 +9,4 @@ if __name__ == '__main__':
     zf_room = container.find('div', class_="zf-room").find_all('p')
     temp = zf_room[4].get_text()
     print temp
+    

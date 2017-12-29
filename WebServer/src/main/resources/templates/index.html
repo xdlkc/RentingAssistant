@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../static/css/bootstrap.min.css" crossorigin="anonymous">
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="./static/js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-    <script src="./static/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="../static/js/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="../static/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <style>
         .myradio {
-            margin-left: 5px;
+            margin-left: 10px;
         }
         .list{
             display: inline-block;
@@ -18,42 +18,130 @@
     </style>
 </head>
 <body>
-    <div class="custom-radio">
-        <label for="cityList">
-            城市:
-        </label>
-        <div id="cityList" class="list"></div>
-    </div>
-    <div class="custom-radio">
-        <label for="subwayList">
-            地铁线:
-        </label>
-        <div id="subwayList" class="list"></div>
+    <form class="form-group">
+        <div >
+            <label for="cityList">
+                城市:
+            </label>
+            <div id="cityList" class="list"></div>
+        </div>
+        <div >
+            <label for="subwayList">
+                地铁线:
+            </label>
+            <div id="subwayList" class="list"></div>
+        </div>
+        <div >
+            <label for="sourceList">
+                来源:
+            </label>
+            <div id="sourceList" class="list"></div>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" onclick="search(this.form)">查询</button>
+        </div>
+    </form>
+    <div >
+        <table class="table table-condensed" id="result">
+            <tr>
+                <th>房屋id</th>
+                <th>房屋标题</th>
+                <th>链接</th>
+                <th>链接哈希值</th>
+                <th>面积</th>
+                <th>室</th>
+                <th>厅</th>
+                <th>卫</th>
+                <th>价格</th>
+                <th>附近地铁</th>
+                <th>租赁方式</th>
+                <th>所在城市</th>
+                <th>所在区</th>
+                <th>小区</th>
+                <th>浏览人数</th>
+                <th>其他信息</th>
+            </tr>
+        </table>
     </div>
     <script>
         window.onload = function (ev) {
-            $.post("/getCity",function (result) {
+            $.get("/getCity",function (data) {
                 let cityList = document.getElementById("cityList");
-                for (let i = 0; i < result.length; i++){
+                for (let i = 0; i < data.length; i++){
                     let input = document.createElement("input");
                     input.setAttribute("type","radio");
                     input.setAttribute("name","subway");
                     input.setAttribute("class","myradio");
                     input.setAttribute("value","city"+i);
                     cityList.appendChild(input);
-                    cityList.append(result[i]);
+                    cityList.append(data[i]);
                 }
             });
-
-            let subwayList = document.getElementById("subwayList");
-            for (var i = 1; i < 16; i++){
+            let sourceList = document.getElementById("sourceList");
+            let source = ["58","lj","zr"];
+            for (let i = 0; i < 3; i++){
                 let input = document.createElement("input");
                 input.setAttribute("type","radio");
+                input.setAttribute("name","source");
+                input.setAttribute("value",source[i]);
+                input.setAttribute("class","myradio");
+                sourceList.appendChild(input);
+                sourceList.append(source[i]);
+            }
+            let subwayList = document.getElementById("subwayList");
+            for (let i = 1; i < 16; i++){
+                let input = document.createElement("input");
+                input.setAttribute("id","subway");
+                input.setAttribute("type","radio");
                 input.setAttribute("name","subway");
-                input.setAttribute("value","subway"+i);
+                input.setAttribute("value",i);
                 input.setAttribute("class","myradio");
                 subwayList.appendChild(input);
                 subwayList.append(i);
+            }
+        };
+        
+        function search(obj) {
+            let varJson = {};
+            for (let i = 0; i < obj.elements.length; i++){
+                if (obj.elements[i].checked === true){
+                    switch (obj.elements[i].name){
+                        case "source":
+                            varJson.source = obj.elements[i].value;
+                            break;
+                        case "subway":
+                            varJson.subway = obj.elements[i].value;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            if (varJson.source === undefined || varJson.subway === undefined){
+                alert("未选定所有设置");
+            }else {
+                $.post("/queryAll",varJson,function (data) {
+                    for (let i = 0; i < data.length; i++){
+                        $("#result").append("<tr><td>" +
+                            data[i].id + "</td><td>"+
+                            data[i].title + "</td><td>" +
+                            data[i].houseLink + "</td><td>" +
+                            data[i].hashLink + "</td><td>" +
+                            data[i].meters + "</td><td>" +
+                            data[i].bedroom + "</td><td>" +
+                            data[i].livingRoom + "</td><td>" +
+                            data[i].toilet + "</td><td>" +
+                            data[i].price + "</td><td>" +
+                            data[i].subway + "</td><td>" +
+                            data[i].rentWay + "</td><td>" +
+                            data[i].cityCode + "</td><td>" +
+                            data[i].regionHi + "</td><td>" +
+                            data[i].village + "</td><td>" +
+                            data[i].peopleSum + "</td><td>" +
+                            data[i].detail + "</td><td>" +
+                        "</td></tr>");
+                    }
+                })
             }
         }
     </script>

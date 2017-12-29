@@ -5,8 +5,8 @@ services:
     
  db:
   image: xdlkc/sql
-  # volumes:
-  #  - /home/lkc/Engineer/DockerEnv/pgd:/var/lib/postgresql/data/pgdata
+  volumes:
+   - /home/lkc/Engineer/DockerEnv/pgd:/var/lib/postgresql/data/pgdata
   ports:
    - 54322:5432
   environment:

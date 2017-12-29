@@ -11,7 +11,7 @@ def config():
         'user': 'postgres',
         'password': 'wimness',
         'dbname': 'postgres',
-        'port': 54321
+        'port': 54322
     }
     return config
 
