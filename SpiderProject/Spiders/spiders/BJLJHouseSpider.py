@@ -9,6 +9,7 @@ from ..tools.city_code_tool import *
 from ..tools.hash_tool import *
 from ..tools.str_tool import *
 from ..tools.print_log import *
+import traceback
 
 class BJLJHouseSpider(scrapy.Spider):
     """

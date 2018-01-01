@@ -71,7 +71,7 @@ DOWNLOADER_MIDDLEWARES = {
 ITEM_PIPELINES = {
     # 'Spiders.pipelines.SpidersPipeline': 100,
     # 'Spiders.pipelines.HouseDataPipeline': 110,
-    # 'Spiders.pipelines.CityDataPipeline': 120,
+    'Spiders.pipelines.CityDataPipeline': 120,
     # 'Spiders.pipelines.JsonPipeline': 130,
     # 'Spiders.pipelines.ProxyPipeline': 140,
 }

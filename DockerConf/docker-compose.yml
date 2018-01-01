@@ -5,8 +5,8 @@ services:
     
  db:
   image: xdlkc/sql
-  volumes:
-   - ./pgd:/var/lib/postgresql/data/pgdata
+  # volumes:
+  #  - ./pgd:/var/lib/postgresql/data
   ports:
    - 54322:5432
   environment:
