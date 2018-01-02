@@ -70,8 +70,8 @@ DOWNLOADER_MIDDLEWARES = {
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     # 'Spiders.pipelines.SpidersPipeline': 100,
-    # 'Spiders.pipelines.HouseDataPipeline': 110,
-    'Spiders.pipelines.CityDataPipeline': 120,
+    'Spiders.pipelines.HouseDataPipeline': 110,
+    # 'Spiders.pipelines.CityDataPipeline': 120,
     # 'Spiders.pipelines.JsonPipeline': 130,
     # 'Spiders.pipelines.ProxyPipeline': 140,
 }
