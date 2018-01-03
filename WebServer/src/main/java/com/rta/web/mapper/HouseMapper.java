@@ -46,4 +46,12 @@ public interface HouseMapper {
      */
     @Select("select * from house where source = #{source} and subway = #{subway}; ")
     LinkedList<House> selectHouseByAll(@Param("source") String source, @Param("subway") Integer subway);
+
+    /**
+     * 根据租赁方式筛选
+     * @param rentWay
+     * @return
+     */
+    @Select("select * from house where rent_way = #{rentWay};")
+    LinkedList<House> selectHouseByRentWay(@Param("rentWay") Integer rentWay );
 }

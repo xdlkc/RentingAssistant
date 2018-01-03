@@ -1,7 +1,10 @@
 package com.rta.web.web;
 
 import com.rta.web.dom.House;
+import com.rta.web.dom.HouseV2;
 import com.rta.web.mapper.HouseMapper;
+import com.rta.web.service.ConvertService;
+import com.rta.web.utils.enums.RentWayEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -19,12 +22,8 @@ public class IndexController {
 
     @Autowired
     HouseMapper mapper;
-
-    @RequestMapping("/greeting")
-    public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "greeting";
-    }
+    @Autowired
+    ConvertService convertService;
 
     @RequestMapping("/")
     public String index(){
@@ -38,24 +37,42 @@ public class IndexController {
         list.add("西安");
         return list;
     }
+
     @RequestMapping(value = "/queryBySubway")
     public @ResponseBody
-    List<House> getHouseBySubway(@RequestParam("subway") Integer subway){
-        return mapper.selectHouseBySubway(subway);
+    List<HouseV2> getHouseBySubway(@RequestParam("subway") Integer subway){
+        return convertService.convertList(mapper.selectHouseBySubway(subway));
     }
 
     @RequestMapping(value = "/queryBySource")
-    public @ResponseBody List<House> getHouseBySource(@RequestParam("source") String source){
-        return mapper.selectHouseBySource(source);
+    public @ResponseBody List<HouseV2> getHouseBySource(@RequestParam("source") String source){
+        return convertService.convertList(mapper.selectHouseBySource(source));
+
     }
 
     @RequestMapping(value = "/queryByVillage")
-    public @ResponseBody List<House> getHouseByVillage(@RequestParam("village") String village){
-        return mapper.selectHouseByVillage(village);
+    public @ResponseBody List<HouseV2> getHouseByVillage(@RequestParam("village") String village){
+        return convertService.convertList(mapper.selectHouseByVillage(village));
     }
     @RequestMapping(value = "/queryAll")
-    public @ResponseBody List<House> getHouse(@RequestParam("source") String source, @RequestParam("subway") Integer subway){
-        return mapper.selectHouseByAll(source,subway);
+    public @ResponseBody List<HouseV2> getHouse(@RequestParam("source") String source, @RequestParam("subway") Integer subway){
+        return convertService.convertList(mapper.selectHouseByAll(source,subway));
     }
+    @RequestMapping(value = "/queryByRentWay")
+    public @ResponseBody List<HouseV2> getHouseByRentWay(@RequestParam("rentWay") String rentWay){
+        String des;
+        String all = "all";
+        if (all.equals(rentWay)){
+            des = "整租";
+        }else {
+            des = "合租";
+        }
+        RentWayEnum rentWayEnum = RentWayEnum.getFromDes(des);
+        if (rentWayEnum == null){
+            return null;
+        }
+        return convertService.convertList(mapper.selectHouseByRentWay(rentWayEnum.getCode()));
+    }
+
 
 }

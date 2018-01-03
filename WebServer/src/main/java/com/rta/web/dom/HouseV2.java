@@ -1,20 +1,13 @@
 package com.rta.web.dom;
 
 import lombok.Data;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * @author lkc
- * @date 17-12-17 上午1:31
+ * @date 18-1-3 下午2:32
  */
 @Data
-@Entity
-public class House {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
+public class HouseV2 {
     long id;
     // 房屋标题
     String title;
@@ -35,9 +28,9 @@ public class House {
     // 房屋来源
     String source;
     // 租赁方式
-    int rentWay;
+    String rentWay;
     // 城市代码
-    int cityCode;
+    String city;
     // 所在大区
     String regionLo;
     // 所在小区
