@@ -9,5 +9,5 @@ SpiderProject/Spiders/logs/warnings/*
 *.pyc
 WebServer/.mvn
 DockerConf/.vscode
-
+DockerConf/pgd
 !SpiderProject/Spiders/logs/debugs
