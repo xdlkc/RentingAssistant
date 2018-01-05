@@ -12,7 +12,7 @@ CREATE TABLE house(
   toilet INT,
   people_sum INT DEFAULT 0,
   source VARCHAR(10) NOT NULL ,
-  rent_way entire_type NOT NULL ,
+  rent_way int NOT NULL ,
   city_code INT NOT NULL REFERENCES city(city_code),
   region_lo VARCHAR(50) NOT NULL ,
   region_hi VARCHAR(50) NOT NULL ,
@@ -31,8 +31,7 @@ VALUES ();
 -- 删除表
 DROP TABLE house;
 SELECT count(*)
-FROM house
-WHERE source='zr';
+FROM house;
 
 -- 检测表
 SELECT tablename
@@ -40,14 +39,14 @@ FROM
   pg_tables
 WHERE tablename='house';
 
--- 清空表数据
-DELETE FROM house;
-
 SELECT count(*)
-FROM house;
+FROM house
+WHERE source!='lj';
 SELECT *
 FROM house;
-
+-- 清空表数据
+DELETE FROM house
+WHERE source='lj';
 
 -- 城市信息
 CREATE TABLE city(
@@ -66,3 +65,4 @@ CREATE TABLE region(
   region_name VARCHAR(20),
   city_code INT REFERENCES city(city_code)
 );
+

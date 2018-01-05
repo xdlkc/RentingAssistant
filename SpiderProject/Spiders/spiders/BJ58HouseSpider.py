@@ -10,6 +10,7 @@ from ..tools.hash_tool import *
 from ..tools.print_log import *
 from ..tools.str_tool import *
 import traceback
+from ..sql.sql_config import *
 
 
 class BJ58HouseSpider(scrapy.Spider):
@@ -39,8 +40,10 @@ class BJ58HouseSpider(scrapy.Spider):
             get_info_logger().info(u"title:{},link:{}".format(item['title'],item['house_link']))
             if len(house_link) == 0:
                 continue
+            item['hash_link'] = hash_str(item['house_link'])
+            if judge_link(item['hash_link']) is not None:
+                continue
             try:
-                item['hash_link'] = hash_str(item['house_link'])
                 html = requests.get(item['house_link']).content
                 bs = BeautifulSoup(html, 'html.parser', from_encoding='utf-8')
                 people = bs.find(id='totalcount')

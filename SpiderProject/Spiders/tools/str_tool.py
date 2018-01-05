@@ -1,6 +1,7 @@
 # coding=utf-8
 import re
-
+import requests
+from bs4 import BeautifulSoup
 
 def replace_space(s):
     """
@@ -42,3 +43,9 @@ def chinese_to_number(no):
         '十四': 14,
         '十五': 15}
     return d['no']
+
+def build_bs(link):
+    hea = {
+        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36'}
+    html = requests.get(link, headers=hea).content
+    return BeautifulSoup(html, 'html.parser', from_encoding='utf-8')

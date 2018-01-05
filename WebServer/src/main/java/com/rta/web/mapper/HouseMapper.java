@@ -54,4 +54,13 @@ public interface HouseMapper {
      */
     @Select("select * from house where rent_way = #{rentWay};")
     LinkedList<House> selectHouseByRentWay(@Param("rentWay") Integer rentWay );
+
+    @Select("select * from house where city_code = #{cityCode};")
+    LinkedList<House> selectHouseByCityCode(@Param("cityCode") Integer cityCode);
+
+    @Select("select * from house where price >= #{lo} and price < #{hi};")
+    LinkedList<House> selectHouseByPriceLoAndHi(@Param("hi") Integer hi, @Param("lo") Integer lo);
+
+    @Select("select * from house where price >= #{hi}")
+    LinkedList<House> selectHouseByPriceBigThanHi(@Param("hi") Integer hi);
 }

@@ -18,5 +18,8 @@ public interface CityMapper {
      * @return
      */
     @Select("select city_name from city where city_code = #{cityCode}")
-    City selectCityNameByCode(int cityCode);
+    String selectCityNameByCode(int cityCode);
+
+    @Select("select city_code from city where city_name = #{cityName}")
+    Integer selectCityCodeByName(String cityName);
 }

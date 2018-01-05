@@ -8,9 +8,9 @@ import lombok.Data;
  */
 public enum RentWayEnum {
     // 整租
-    ALL(0,"整租"),
+    ALL(1,"整租"),
     // 合租
-    SINGLE(1,"合租");
+    SINGLE(0,"合租");
     int code;
     String des;
 

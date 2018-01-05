@@ -27,8 +27,7 @@ class HouseDataPipeline(object):
 
     def open_spider(self, spider):
         judge_table_sql = '''SELECT tablename FROM pg_tables WHERE tablename='house';'''
-        create_table_sql = '''CREATE TYPE entire_type AS ENUM ('0','1');
-                            CREATE TABLE house(
+        create_table_sql = '''CREATE TABLE house(
                             id SERIAL PRIMARY KEY,
                             title VARCHAR(50) NOT NULL ,
                             house_link text NOT NULL ,
@@ -39,7 +38,7 @@ class HouseDataPipeline(object):
                             toilet INT,
                             people_sum INT DEFAULT 0,
                             source VARCHAR(10) NOT NULL ,
-                            rent_way entire_type NOT NULL ,
+                            rent_way INT NOT NULL ,
                             city_code INT NOT NULL REFERENCES city(city_code),
                             region_lo VARCHAR(50) NOT NULL ,
                             region_hi VARCHAR(50) NOT NULL ,

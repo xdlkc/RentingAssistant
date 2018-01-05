@@ -4,102 +4,130 @@
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/loading.css}">
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script th:src="@{js/jquery-3.2.1.min.js}" crossorigin="anonymous"></script>
-    <script th:src="@{js/bootstrap.min.js}" crossorigin="anonymous"></script>
+    <script th:src='@{/js/jquery-3.2.1.min.js}'></script>
+    <!--<script th:src="@{/js/bootstrap.min.js}"></script>-->
+    <!--<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>-->
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
-        .myradio {
-            margin-left: 10px;
-        }
-        .list{
-            display: inline-block;
+        .loadFont {
+            position: relative;
+            top: 110px;
+            left: 25px ;
+            font-size: 18px;
+            color: lightgreen;
         }
     </style>
 </head>
 <body>
-<!-- Single button -->
-<div class="btn-group">
-    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Action <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-    </ul>
-</div>
-    <!--<div>-->
-        <!--<p onclick="search(event)" id="city">-->
-            <!--城市:-->
-            <!--<a href="javascript:void(0)" name="bj">北京</a>-->
-            <!--<a href="javascript:void(0)" name="xa">西安</a>-->
-        <!--</p>-->
-        <!--<p onclick="search(event)" id="rentWay">-->
-            <!--租赁方式:-->
-            <!--<a href="javascript:void(0)" name="single">整租</a>-->
-            <!--<a href="javascript:void(0)" name="all">合租</a>-->
-        <!--</p>-->
-        <!--<p onclick="search(event)" id="subway">-->
-            <!--地铁:-->
-            <!--<a href="javascript:void(0)" name="1">1</a>-->
-            <!--<a href="javascript:void(0)" name="2">2</a>-->
-            <!--<a href="javascript:void(0)" name="3">3</a>-->
-            <!--<a href="javascript:void(0)" name="4">4</a>-->
-            <!--<a href="javascript:void(0)" name="5">5</a>-->
-            <!--<a href="javascript:void(0)" name="6">6</a>-->
-            <!--<a href="javascript:void(0)" name="7">7</a>-->
-            <!--<a href="javascript:void(0)" name="8">8</a>-->
-            <!--<a href="javascript:void(0)" name="9">9</a>-->
-            <!--<a href="javascript:void(0)" name="10">10</a>-->
-            <!--<a href="javascript:void(0)" name="11">11</a>-->
-            <!--<a href="javascript:void(0)" name="12">12</a>-->
-            <!--<a href="javascript:void(0)" name="13">13</a>-->
-            <!--<a href="javascript:void(0)" name="14">14</a>-->
-            <!--<a href="javascript:void(0)" name="15">15</a>-->
-        <!--</p>-->
-        <!--<p onclick="search(event)" id="price">-->
-            <!--价格:-->
-            <!--<a href="javascript:void(0)">1000以下</a>-->
-            <!--<a href="javascript:void(0)">1000-2000</a>-->
-            <!--<a href="javascript:void(0)">2000-3000</a>-->
-            <!--<a href="javascript:void(0)">3000-4000</a>-->
-            <!--<a href="javascript:void(0)">4000-5000</a>-->
-            <!--<a href="javascript:void(0)">5000-6000</a>-->
-            <!--<a href="javascript:void(0)">6000以上</a>-->
-        <!--</p>-->
+    <div class="loadEffect" id="load" style="visibility: hidden">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <p class="loadFont">查询中...</p>
+    </div>
+    <div>
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab1" data-toggle="tab">主页</a></li>
+            <li ><a href="#tab2" data-toggle="tab">基本信息</a></li>
+            <li ><a href="#tab3" data-toggle="tab">其他信息</a></li>
+        </ul>
+        <div class="tab-content" >
+            <div class="tab-pane fade in active" id="tab1" style="padding: 10px 35px;font-size: 17px" >
+                <h3>条件筛选</h3>
+                <p onclick="search(event)" id="city">
+                    城市:
+                    <a href="javascript:void(0)" name="bj">北京</a>
+                    <a href="javascript:void(0)" name="xa">西安</a>
+                    <a href="javascript:void(0)" name="sz">深圳</a>
+                    <a href="javascript:void(0)" name="sh">上海</a>
+                </p>
+                <p onclick="search(event)" id="rentWay">
+                    租赁方式:
+                    <a href="javascript:void(0)" name="single">整租</a>
+                    <a href="javascript:void(0)" name="all">合租</a>
+                </p>
+                <p onclick="search(event)" id="subway">
+                    地铁:
+                    <a href="javascript:void(0)" name="1">1</a>
+                    <a href="javascript:void(0)" name="2">2</a>
+                    <a href="javascript:void(0)" name="3">3</a>
+                    <a href="javascript:void(0)" name="4">4</a>
+                    <a href="javascript:void(0)" name="5">5</a>
+                    <a href="javascript:void(0)" name="6">6</a>
+                    <a href="javascript:void(0)" name="7">7</a>
+                    <a href="javascript:void(0)" name="8">8</a>
+                    <a href="javascript:void(0)" name="9">9</a>
+                    <a href="javascript:void(0)" name="10">10</a>
+                    <a href="javascript:void(0)" name="11">11</a>
+                    <a href="javascript:void(0)" name="12">12</a>
+                    <a href="javascript:void(0)" name="13">13</a>
+                    <a href="javascript:void(0)" name="14">14</a>
+                    <a href="javascript:void(0)" name="15">15</a>
+                </p>
+                <p onclick="search(event)" id="price">
+                    价格:
+                    <a href="javascript:void(0)" name="1000">1000以下</a>
+                    <a href="javascript:void(0)" name="2000">1000-2000</a>
+                    <a href="javascript:void(0)" name="3000">2000-3000</a>
+                    <a href="javascript:void(0)" name="4000">3000-4000</a>
+                    <a href="javascript:void(0)" name="5000">4000-5000</a>
+                    <a href="javascript:void(0)" name="6000">5000-6000</a>
+                    <a href="javascript:void(0)" name="7000">6000以上</a>
+                </p>
 
-    <!--</div>-->
-    <!--<div>-->
-        <!--<h3>基本信息</h3>-->
-        <!--<table class="table table-condensed" id="baseResult">-->
-            <!--<tr>-->
-                <!--<th>房屋id</th>-->
-                <!--<th>房屋标题</th>-->
-                <!--<th>链接</th>-->
-                <!--<th>链接哈希值</th>-->
-                <!--<th>面积</th>-->
-                <!--<th>价格</th>-->
-                <!--<th>所在城市</th>-->
-                <!--<th>所在区</th>-->
-                <!--<th>小区</th>-->
-                <!--<th>浏览人数</th>-->
-            <!--</tr>-->
-        <!--</table>-->
-        <!--<h3>详细信息</h3>-->
-        <!--<table class="table table-condensed" id="detailResult">-->
-            <!--<tr>-->
-                <!--<th>室</th>-->
-                <!--<th>厅</th>-->
-                <!--<th>卫</th>-->
-                <!--<th>附近地铁</th>-->
-                <!--<th>租赁方式</th>-->
-                <!--<th>其他信息</th>-->
-            <!--</tr>-->
-        <!--</table>-->
-    <!--</div>-->
+            </div>
+            <div class="tab-pane fade" id="tab2" style="padding: 10px 35px;font-size: 17px">
+                <h3>基本信息</h3>
+                <table class="table table-condensed" >
+                    <thead>
+                    <tr>
+                        <th>房屋id</th>
+                        <th>房屋标题</th>
+                        <th>链接</th>
+
+                        <th>面积</th>
+                        <th>价格</th>
+                        <th>所在城市</th>
+                        <th>所在区</th>
+                        <th>小区</th>
+                    </tr>
+                    </thead>
+                    <tbody id="baseResult">
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane fade" id="tab3" style="padding: 10px 35px;font-size: 17px">
+                <h3>详细信息</h3>
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th>链接哈希值</th>
+                        <th>室</th>
+                        <th>厅</th>
+                        <th>卫</th>
+                        <th>附近地铁</th>
+                        <th>租赁方式</th>
+                        <th>其他信息</th>
+                        <th>浏览人数</th>
+                    </tr>
+                    </thead>
+                    <tbody id="detailResult">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         function appendHouse(list) {
             $("#baseResult").find("tr:not(:first)").empty("");
@@ -109,38 +137,71 @@
                     list[i].id + "</td><td>"+
                     list[i].title + "</td><td>" +
                     list[i].houseLink + "</td><td>" +
-                    list[i].hashLink + "</td><td>" +
+
                     list[i].meters + "</td><td>" +
                     list[i].price + "</td><td>" +
                     list[i].city + "</td><td>" +
                     list[i].regionHi + "</td><td>" +
                     list[i].village + "</td><td>" +
-                    list[i].peopleSum + "</td><td>" +
                     "</td></tr>");
                 $("#detailResult").append("<tr><td>" +
+                    list[i].hashLink + "</td><td>" +
                     list[i].bedroom + "</td><td>" +
                     list[i].livingRoom + "</td><td>" +
                     list[i].toilet + "</td><td>" +
                     list[i].subway + "</td><td>" +
                     list[i].rentWay + "</td><td>" +
                     list[i].detail + "</td><td>" +
+                    list[i].peopleSum + "</td><td>" +
                     "</td></tr>");
             }
+
         }
         function search(e) {
-            var v = e.target.name;
+            let i = e.target.id;
+            let t = ['price','city','rentWay','subway'];
+            if (t.indexOf(i) !== -1){
+                return
+            }
+            let myloading = $('#load');
+            myloading.removeAttr('style');
+            let v = e.target.name;
             switch (e.currentTarget.id){
                 case "city":
+                    $.get("/queryByCity?city="+v,function (data) {
+                        $("#load").css('visibility','hidden');
+                        appendHouse(data);
+                    });
                     break;
                 case "subway":
                     $.get("/queryBySubway?subway="+v,function (data) {
+                        $("#load").css('visibility','hidden');
                         appendHouse(data);
                     });
                     break;
                 case "rentWay":
                     $.get("/queryByRentWay?rentWay="+v,function (data) {
+                        $("#load").css('visibility','hidden');
                         appendHouse(data);
+
                     });
+                    break;
+                case "price":
+
+                    if (v !== 7000){
+                        let hi = v;
+                        let lo = v-1000;
+                        $.get("/queryByPriceLoAndHi?lo="+lo + "&hi="+hi,function (data) {
+                            $("#load").css('visibility','hidden');
+                            appendHouse(data);
+                        });
+                    }else {
+                        $.get("/queryByPriceBigThanHi?hi="+v,function (data) {
+                            $("#load").css('visibility','hidden');
+                            appendHouse(data);
+                        });
+                    }
+
                     break;
                 default:
                     break;

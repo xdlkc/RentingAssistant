@@ -24,7 +24,7 @@ public class ConvertService {
     public HouseV2 convert(House house){
         HouseV2 houseV2 = new HouseV2();
         BeanUtils.copyProperties(house,houseV2);
-        houseV2.setCity(cityMapper.selectCityNameByCode(house.getCityCode()).getCityName());
+        houseV2.setCity(cityMapper.selectCityNameByCode(house.getCityCode()));
         houseV2.setRentWay(Objects.requireNonNull(RentWayEnum.getFromCode(house.getRentWay())).getDes());
         return houseV2;
     }

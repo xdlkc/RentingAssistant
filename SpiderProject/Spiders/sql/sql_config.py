@@ -32,11 +32,26 @@ def init_table(judge_table_sql, create_table_sql, create_index_sql):
     cur = conn.cursor()
     try:
         cur.execute(judge_table_sql)
-        print cur.fetchone()
-        if cur.fetchone() is None:
+        temp = cur.fetchone()
+        if temp is None:
+            print "建表: " + create_table_sql
             cur.execute(create_table_sql)
             cur.execute(create_index_sql)
         conn.commit()
+    except Exception as e:
+        get_error_logger().error(e)
+    finally:
+        cur.close()
+        conn.close()
+
+
+def select_table(sel_sql):
+    conn = connect_db()
+    cur = conn.cursor()
+    try:
+        cur.execute(sel_sql)
+        conn.commit()
+        return cur.fetchone()
     except Exception as e:
         get_error_logger().error(e)
     finally:
@@ -60,3 +75,16 @@ def insert_table(insert_sql):
     finally:
         cur.close()
         conn.close()
+
+
+def judge_link(link):
+    """
+    判断房屋表中是否已存在当前链接
+    :param link:
+    :return:
+    """
+    sel_sql = '''
+            SELECT *
+            FROM house
+            WHERE hash_link='%s';''' % link
+    return select_table(sel_sql)
