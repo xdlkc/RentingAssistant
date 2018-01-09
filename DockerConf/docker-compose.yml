@@ -2,6 +2,8 @@ version: '2'
 services:
  spider:
   build: ./spider/
+  depends_on:
+   - db
     
  db:
   build: ./db/
