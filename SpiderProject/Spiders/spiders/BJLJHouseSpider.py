@@ -17,7 +17,7 @@ class BJLJHouseSpider(scrapy.Spider):
     """
     链家网租房信息爬取
     """
-    name = "lj"
+    name = "ljzf"
     allowed_domains = [
         'https://bj.lianjia.com',
         'https://xa.lianjia.com/zufang/',

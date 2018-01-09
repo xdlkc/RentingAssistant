@@ -2,6 +2,8 @@ version: '2'
 services:
  spider:
   image: xdlkc/spider
+  depends_on:
+   - db
     
  db:
   image: xdlkc/sql

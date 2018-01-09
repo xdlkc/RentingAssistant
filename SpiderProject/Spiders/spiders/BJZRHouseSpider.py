@@ -17,7 +17,7 @@ class BJZRHouseSpider(scrapy.Spider):
     自如租房信息爬取
 
     """
-    name = 'zr'
+    name = 'zrzf'
     allowed_domains = ['http://www.ziroom.com/']
     start_urls = [
         'http://www.ziroom.com/z/nl/z2.html?p=1',

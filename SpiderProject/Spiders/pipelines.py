@@ -26,6 +26,8 @@ class HouseDataPipeline(object):
     """
 
     def open_spider(self, spider):
+        if 'zf' not in spider.name:
+            return
         judge_table_sql = '''SELECT tablename FROM pg_tables WHERE tablename='house';'''
         create_table_sql = '''CREATE TABLE house(
                             id SERIAL PRIMARY KEY,
@@ -51,6 +53,8 @@ class HouseDataPipeline(object):
         init_table(judge_table_sql, create_table_sql, create_index_sql)
 
     def process_item(self, item, spider):
+        if 'zf' not in spider.name:
+            return
         insert_sql = '''INSERT INTO house (title, house_link, hash_link, meters, bedroom, living_room, toilet,
                         people_sum, source, rent_way, city_code, region_lo, region_hi, subway, price, detail, village)
                         VALUES ('%s','%s','%s','%f','%d','%d','%d',

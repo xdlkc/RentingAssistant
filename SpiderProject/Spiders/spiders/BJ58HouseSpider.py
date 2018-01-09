@@ -15,9 +15,9 @@ from ..sql.sql_config import *
 
 class BJ58HouseSpider(scrapy.Spider):
     """
-    58网北京租房信息
+    58网租房信息
     """
-    name = "58bj"
+    name = "58zf"
     allowed_domains = ["http://bj.58.com/"]
     start_urls = ["http://bj.58.com/chuzu/pn1/"]
 
