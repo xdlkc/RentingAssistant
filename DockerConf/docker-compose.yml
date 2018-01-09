@@ -1,10 +1,10 @@
 version: '2'
 services:
  spider:
-  image: xdlkc/spider
+  build: ./spider/
     
  db:
-  image: xdlkc/sql
+  build: ./db/
   volumes:
    - ../pgd:/var/lib/postgresql/data
   ports:
@@ -13,7 +13,7 @@ services:
    POSTGRES_PASSWORD: wimness
    
 #  web:
-#   image: xdlkc/web
+#   build: ./web/
 #   ports:
 #    - 8088:8080
 

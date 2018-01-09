@@ -1,0 +1,226 @@
+卷 新加卷 的文件夹 PATH 列表
+卷序列号为 0080-D5BC
+D:\CODE\RA
+
+// 项目进度跟踪
+│  进度.md
+├─DockerConf
+// docker compose配置文件
+│  │  docker-compose.yml 
+│  ├─spider
+// 爬虫环境镜像配置
+│  │      dockerfile
+│  │      requirements.txt
+│  │      
+│  ├─sql
+// 数据库环境镜像配置
+│  │      dockerfile
+│  │      
+│  └─web
+// 服务器环境镜像配置
+│          dockerfile
+│          
+├─SpiderProject
+│  └─Spiders
+// python枚举相关类
+│      │  enums.py
+// 爬虫item结构
+│      │  items.py
+│      │  pipelines.py
+// 爬虫配置
+│      │  settings.py
+│      │  
+│      ├─ips
+// ip代理
+│      │      ips.txt
+│      │      
+// 爬虫的json缓存
+│      ├─jsons
+│      │      58bj.json
+│      │      city.json
+│      │      
+// 日志模块
+│      ├─logs
+│      │  │  
+│      │  ├─errors
+│      │  │      2018-01-02.log
+│      │  │      
+│      │  ├─infos
+│      │  │      2018-01-02.log
+│      │  │      
+│      │  └─warnings
+│      │          2018-01-02.log
+│      │          
+│      ├─spiders
+// 58爬虫
+│      │      BJ58HouseSpider.py
+// 链家爬虫
+│      │      BJLJHouseSpider.py
+// 自如爬虫
+│      │      BJZRHouseSpider.py
+// 城市爬虫
+│      │      CitySpider.py
+// ip代理爬虫
+│      │      ProxySpider.py
+│      │      
+│      ├─sql
+// sql相关语句
+│      │      conf.sql
+// sql配置文件
+│      │      sql.json
+// 配置sql及插入，查询等模板函数
+│      │      sql_config.py
+│      │      
+│      └─tools
+// 城市名转城市代码
+│              city_code_tool.py
+// 字符串md5加密
+│              hash_tool.py
+// 日志配置
+│              print_log.py
+// 字符串工具函数
+│              str_tool.py
+│              
+└─WebServer
+    ├─src
+    │  ├─main
+    │  │  ├─java
+    │  │  │  └─com
+    │  │  │      └─rta
+    │  │  │          └─web
+// Spring Boot主运行方法
+    │  │  │              │  WebApplication.java
+    │  │  │              │  
+// dom层
+    │  │  │              ├─dom
+    │  │  │              │      City.java
+    │  │  │              │      House.java
+    │  │  │              │      HouseV2.java
+    │  │  │              │      
+// mapper层
+    │  │  │              ├─mapper
+    │  │  │              │      CityMapper.java
+    │  │  │              │      HouseMapper.java
+    │  │  │              │      
+// service层
+    │  │  │              ├─service
+    │  │  │              │      ConvertService.java
+    │  │  │              │      
+// 工具类
+    │  │  │              ├─utils
+    │  │  │              │  └─enums
+    │  │  │              │          CityNameEnum.java
+    │  │  │              │          RentWayEnum.java
+    │  │  │              │          
+    │  │  │              └─web
+    │  │  │                      IndexController.java
+    │  │  │                      
+    │  │  └─resources
+// Spring Boot配置
+    │  │      │  application.properties
+    │  │      │          
+    │  │      └─templates
+// 前端页面
+    │  │              index.html
+                            
+
+
+最后，对本工程涉及的主要文件及目录做简要说明：
+// 项目进度跟踪
+│  进度.md
+├─DockerConf
+// docker compose配置文件
+│  │  docker-compose.yml 
+│  ├─spider
+// 爬虫环境镜像配置
+│  │      dockerfile
+│  │      requirements.txt
+│  ├─sql
+// 数据库环境镜像配置
+│  │      dockerfile
+│  └─web
+// 服务器环境镜像配置
+│          dockerfile
+├─SpiderProject
+│  └─Spiders
+// python枚举相关类
+│      │  enums.py
+// 爬虫item结构
+│      │  items.py
+│      │  pipelines.py
+// 爬虫配置
+│      │  settings.py
+│      ├─ips
+// ip代理
+│      │      ips.txt
+// 爬虫的json缓存
+│      ├─jsons
+│      │      58bj.json
+│      │      city.json
+// 日志模块
+│      ├─logs
+│      │  ├─errors
+│      │  ├─infos
+│      │  └─warnings
+│      ├─spiders
+// 58爬虫
+│      │      BJ58HouseSpider.py
+// 链家爬虫
+│      │      BJLJHouseSpider.py
+// 自如爬虫
+│      │      BJZRHouseSpider.py
+// 城市爬虫
+│      │      CitySpider.py
+// ip代理爬虫
+│      │      ProxySpider.py
+│      ├─sql
+// sql相关语句
+│      │      conf.sql
+// sql配置文件
+│      │      sql.json
+// 配置sql及插入，查询等模板函数
+│      │      sql_config.py
+│      └─tools
+// 城市名转城市代码
+│              city_code_tool.py
+// 字符串md5加密
+│              hash_tool.py
+// 日志配置
+│              print_log.py
+// 字符串工具函数
+│              str_tool.py  
+└─WebServer
+    ├─src
+    │  ├─main
+    │  │  ├─java
+    │  │  │  └─com
+    │  │  │      └─rta
+    │  │  │          └─web
+// Spring Boot主运行方法
+    │  │  │              │  WebApplication.java
+// dom层
+    │  │  │              ├─dom
+    │  │  │              │      City.java
+    │  │  │              │      House.java
+    │  │  │              │      HouseV2.java
+// mapper层
+    │  │  │              ├─mapper
+    │  │  │              │      CityMapper.java
+    │  │  │              │      HouseMapper.java   
+// service层
+    │  │  │              ├─service
+    │  │  │              │      ConvertService.java
+// 工具类
+    │  │  │              ├─utils
+    │  │  │              │  └─enums
+    │  │  │              │          CityNameEnum.java
+    │  │  │              │          RentWayEnum.java
+    │  │  │              └─web
+    │  │  │                      IndexController.java
+    │  │  └─resources
+// Spring Boot配置
+    │  │      │  application.properties
+    │  │      └─templates
+// 前端页面
+    │  │              index.html
+
