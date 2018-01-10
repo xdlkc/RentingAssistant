@@ -1,12 +1,12 @@
 version: '2'
 services:
- spider:
-  build: ./spider/
-  depends_on:
-   - db
+#  spider:
+#   build: ./spider/
+#   depends_on:
+#    - db
     
  db:
-  build: ./db/
+  image: lkc_db
   volumes:
    - ../pgd:/var/lib/postgresql/data
   ports:
@@ -14,9 +14,13 @@ services:
   environment:
    POSTGRES_PASSWORD: wimness
    
-#  web:
-#   build: ./web/
-#   ports:
-#    - 8088:8080
+ web:
+  image: lkc_web
+  ports:
+   - 8088:8080
+  depends_on:
+   - db
+  links:
+   - db
 
    

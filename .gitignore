@@ -11,3 +11,4 @@ WebServer/.mvn
 DockerConf/.vscode
 DockerConf/pgd
 !SpiderProject/Spiders/logs/debugs
+pgd/
