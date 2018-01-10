@@ -1,3 +1,0 @@
-deb http://mirrors.ustc.edu.cn/kali-security/ kali/updates main contrib non-free
-deb http://mirrors.ustc.edu.cn/kali kali main non-free contrib
-deb-src http://mirrors.ustc.edu.cn/kali kali main non-free contrib

@@ -1,8 +1,8 @@
-FROM ubuntu
+FROM ubuntu:16.04
 MAINTAINER wimness@163.com
 RUN rm /etc/apt/sources.list
-COPY DockerConf/source.list /etc/apt/sources.list
-RUN apt-get update && apt-get install -y python python-pip python-dev
+COPY DockerConf/sources.list /etc/apt/sources.list
+RUN apt-get -y update && apt-get install -y python python-pip python-dev
 RUN pip install --upgrade pip
 RUN mkdir /code
 WORKDIR /code
